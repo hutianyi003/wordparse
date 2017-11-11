@@ -28,30 +28,45 @@ namespace ds {
 		~CharString();
 
 		inline const int len() const;
-		int indexOf(const CharString& sub);
 		inline texttype* const getbase()const;
+
+		inline texttype& operator[] (int p) {
+			return sp[p];
+		}
+		int indexOf(const CharString& sub);
 		CharString substring(int pos,int sublen)const;
+
 		void concat(const CharString& rhs);
 		CharString& operator = (const CharString &rhs);
+		bool operator == (const CharString& rhs)const;
 		//const CharString operator + (const CharString& rhs);
 		//bool assign(const CharString& rhs);
 	private:
 		texttype *sp;
 		int lenth;
 	};
-	/*
+	class linkNode {
+	public:
+		linkNode(const CharString &td, linkNode* tnext);
+		CharString d;
+		linkNode* next;
+	};
 	class CharStringLink {
 	public:
 		CharStringLink();
-		CharStringLink(const CharStringLink &rhs);
 		~CharStringLink();
 
-		bool add(const CharString &rhs, const int place = -1);
-		bool remove(const int place);
-		int search(const CharString& searchfor);
+		bool add(const CharString &rhs,int place = -1);
+		bool remove(int place);
+		int search(const CharString& searchfor)const;
+		inline int size()const;
 	private:
+		linkNode * head, *tail;
+		int lenth;
+	};
 
-	};*/
+
+/*------------------------stack--------------------------------*/
 	template<class datatype>
 	inline Stack<datatype>::Stack() :stacksize(0), maxstacksize(EVERY_ADD_SIZE)
 	{
@@ -64,7 +79,8 @@ namespace ds {
 		maxstacksize(rhs.maxstacksize)
 	{
 		base = new[maxstacksize];
-		std::memcpy(base, rhs.base, stacksize*sizeof(datatype));
+		for (int i = 0; i < stacksize; i++)
+			*(base + i) = *(rhs.base + i);
 		return;
 	}
 	template<class datatype>
@@ -85,7 +101,8 @@ namespace ds {
 		if (stacksize == maxstacksize) {
 			maxstacksize += EVERY_ADD_SIZE;
 			datatype *newbase = new datatype[maxstacksize];
-			std::memcpy(newbase, base, stacksize * sizeof(datatype));
+			for (int i = 0; i < stacksize; i++)
+				*(newbase + i) = *(base + i);
 			delete[] base;
 			base = newbase;
 		}
