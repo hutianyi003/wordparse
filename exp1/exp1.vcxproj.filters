@@ -27,6 +27,12 @@
     <ClCompile Include="htmlparse.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="wordparse.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mywds.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="webdownload.h">
@@ -36,6 +42,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="htmlparse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="wordparse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mywds.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

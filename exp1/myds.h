@@ -32,6 +32,7 @@ namespace ds {
 		inline texttype* const getbase()const;
 		CharString substring(int pos,int sublen)const;
 		void concat(const CharString& rhs);
+		CharString& operator = (const CharString &rhs);
 		//const CharString operator + (const CharString& rhs);
 		//bool assign(const CharString& rhs);
 	private:

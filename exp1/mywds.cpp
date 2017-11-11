@@ -1,41 +1,38 @@
-#include "myds.h"
+#include "mywds.h"
 #include <cstring>
+#include <tchar.h>
+#include <wchar.h>
 
-ds::CharString::CharString(int newsize) :sp(nullptr), lenth(newsize)
+wds::CharString::CharString(int newsize) :sp(nullptr), lenth(newsize)
 {
 	if (newsize != 0)
 		sp = new texttype[newsize];
 }
 
-ds::CharString::CharString(const texttype * s)
+wds::CharString::CharString(const texttype * s)
 {
-	lenth = std::strlen(s);
+	lenth = std::wcslen(s);
 	sp = new texttype[lenth];
 	std::memcpy(sp, s, lenth * sizeof(texttype));
 }
 
-ds::CharString::CharString(std::string & s)
-{
-	new (this)CharString(s.c_str());
-}
-
-ds::CharString::CharString(const CharString & rhs) :lenth(rhs.len())
+wds::CharString::CharString(const CharString & rhs) :lenth(rhs.len())
 {
 	sp = new texttype[lenth];
 	std::memcpy(sp, rhs.getbase(), lenth * sizeof(texttype));
 }
 
-ds::CharString::~CharString()
+wds::CharString::~CharString()
 {
 	delete[] sp;
 }
 
-const int ds::CharString::len() const
+const int wds::CharString::len() const
 {
 	return lenth;
 }
 
-int ds::CharString::indexOf(const CharString & sub)
+int wds::CharString::indexOf(const CharString & sub)
 {
 	int sublen = sub.len();
 	if (sublen > lenth)
@@ -53,12 +50,12 @@ int ds::CharString::indexOf(const CharString & sub)
 	return -1;
 }
 
-ds::texttype * const ds::CharString::getbase() const
+wds::texttype * const wds::CharString::getbase() const
 {
 	return sp;
 }
 
-ds::CharString ds::CharString::substring(int pos, int sublen)const
+wds::CharString wds::CharString::substring(int pos, int sublen)const
 {
 	if (pos < 0 || pos >= lenth)
 		return CharString();
@@ -69,7 +66,7 @@ ds::CharString ds::CharString::substring(int pos, int sublen)const
 	return temps;
 }
 
-void ds::CharString::concat(const CharString & rhs)
+void wds::CharString::concat(const CharString & rhs)
 {
 	texttype * temps = new texttype[lenth + rhs.len()];
 	std::memcpy(temps, sp, lenth * sizeof(texttype));
@@ -79,7 +76,7 @@ void ds::CharString::concat(const CharString & rhs)
 	sp = temps;
 }
 
-ds::CharString & ds::CharString::operator=(const CharString & rhs)
+wds::CharString & wds::CharString::operator=(const CharString & rhs)
 {
 	if (this == &rhs)
 		return (*this);
