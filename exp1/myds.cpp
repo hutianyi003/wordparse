@@ -37,10 +37,20 @@ const int ds::CharString::len() const
 
 int ds::CharString::indexOf(const CharString & sub)
 {
-//	if (sub.len() > lenth)
-//		return -1;
-//	for(int i=0;i<lenth)
-	return 0;
+	int sublen = sub.len();
+	if (sublen > lenth)
+		return -1;
+	for (int i = 0; i <= lenth - sublen; i++) {
+		bool flag = true;
+		for (int j = i; j < i + sublen; j++)
+			if (sp[j] != sub.getbase()[j - i]) {
+				flag = false;
+				break;
+			}
+		if (flag == true)
+			return i;
+	}
+	return -1;
 }
 
 ds::texttype * const ds::CharString::getbase() const

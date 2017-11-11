@@ -8,6 +8,7 @@ int main() {
 //		std::cout << "ok" << std::endl;
 	ds::CharString s("Hello World");
 	s.concat(ds::CharString(" HTY"));
-	s;
+	int flag = s.indexOf(ds::CharString("H"));
+	std::cout << flag << std::endl;
 	return 0;
 }
