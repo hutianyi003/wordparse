@@ -117,11 +117,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="htmlparse.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="myds.cpp" />
     <ClCompile Include="webdownload.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="htmlparse.h" />
     <ClInclude Include="myds.h" />
     <ClInclude Include="webdownload.h" />
   </ItemGroup>

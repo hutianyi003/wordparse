@@ -24,12 +24,18 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="htmlparse.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="webdownload.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="myds.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="htmlparse.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

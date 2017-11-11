@@ -58,6 +58,8 @@ bool webDownloader::getUrlFromCsv()
 			}
 		}
 		url.push_back(turl);
+		if (url.size() == urlnumber)
+			break;
 	}
 	if (url.size() == urlnumber)//check if success
 		return true;
