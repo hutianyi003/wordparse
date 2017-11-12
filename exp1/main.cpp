@@ -4,6 +4,7 @@
 #include <clocale>
 #include "webdownload.h"
 #include "myds.h"
+#include "wordparse.h"
 
 void output(ds::CharString& s) {
 	int l = s.len();
@@ -12,6 +13,7 @@ void output(ds::CharString& s) {
 	std::cout << std::endl;
 }
 int main() {
+	setlocale(LC_ALL, "chi");
 	//webDownloader down("url.csv", 1);
 	//if (down.getHtml("buffer"))
 		//std::cout << "ok" << std::endl;
@@ -27,14 +29,17 @@ int main() {
 	std::wcout.imbue(china);
 	while (input >> c) {
 		std::wcout << c;
-	}*/
-	ds::Stack<ds::CharString> s;
-	s.push(ds::CharString("123"));
-	s.push(ds::CharString("456"));
-	s.push(ds::CharString("789"));
-	for (int i = 0; i < 3; i++) {
-		output(s.top());
-		s.pop();
 	}
+	
+	std::ofstream output("outchi.csv");
+	wchar_t head = '\xFE\xFF';
+	wchar_t c = L'\xf2\xb4';
+	char a = '\xf2', b = '\xb4';
+	if (!output) {
+		std::cout << "failed" << std::endl;
+	}
+	output << c;*/
+	wordParse wp;
+	wp.getDic("common.dic");
 	return 0;
 }

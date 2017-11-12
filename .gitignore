@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/exp1/testout.txt
+/exp1/testout.html
+/exp1/outchi.csv
+/exp1/debug.txt
