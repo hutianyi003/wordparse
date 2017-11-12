@@ -12,41 +12,35 @@ htmlParse::htmlParse(int tnumber) :
 	posttype(tnumber),
 	date(tnumber),
 	context(tnumber),
-	visauthor(tnumber,false)
+	visauthor(tnumber,false),
+	viscontext(tnumber,false),
+	visdate(tnumber, 0)
 {
 }
 
-void htmlParse::debugOutput(const container& out)
+void output(const ds::CharString &out) {
+	int len = out.len();
+	for (int i = 0; i < len; i++)
+		putchar(out[i]);
+	putchar('\n');
+}
+void htmlParse::debugOutput()
 {
-	for (int i = 0; i < 90; i++) {
-		//int len = bigtype[i].len();
-		//for (int j = 0; j < len; j++)
-		//	putchar(bigtype[i][j]);
-		//putchar('\n');
-
-		//len = smalltype[i].len();
-		//for (int j = 0; j < len; j++)
-		//	putchar(smalltype[i][j]);
-		//putchar('\n');
-
-		//len = title[i].len();
-		//for (int j = 0; j < len; j++)
-		//	putchar(title[i][j]);
-		//putchar('\n');
-		//int len = posttype[i].len();
-		//for (int j = 0; j < len; j++)
-		//	putchar(posttype[i][j]);
-		//putchar('\n');
-		int len = author[i].len();
-		for (int j = 0; j < len; j++)
-			putchar(author[i][j]);
-		putchar('\n');
+	int len = 0;
+	for (int i = 0; i < pagenumber; i++) {
+		output(bigtype[i]);
+		output(smalltype[i]);
+		output(posttype[i]);
+		output(title[i]);
+		output(author[i]);
+		output(date[i]);
+		output(context[i]);
 		putchar('\n');
 	}
 }
 htmlParse::~htmlParse()
 {
-	debugOutput(bigtype);
+	//debugOutput();
 }
 
 bool htmlParse::parse(const std::string & tfilename)
@@ -213,6 +207,51 @@ int htmlParse::getinfo(
 							++addlen;
 						author[nowpage] = (info.substring(i + 1, addlen));
 						visauthor[nowpage] = true;
+						return context.len() - 1;
+					}
+				}
+		}
+		if (!viscontext[nowpage] && argclass == "t_fsz") {
+			std::string buf;
+			std::getline(input, buf);
+			std::getline(input, buf);
+			ds::CharString info(buf);
+			int infolen = info.len(), place = 0, addlen = 0;
+			int testlen = 0;
+			while (testlen < infolen&&info[testlen] == ' ')
+				testlen++;
+			if (info[testlen] != '<')
+				place++;
+			for (int i = testlen-1; i < infolen; i++) {
+				if (info[i] == '>') {
+					place++;
+				}
+				if (place == TYPEPLACE::context) {
+					addlen = 0;
+					while (i + addlen + 1 < infolen&&info[i + addlen + 1] != '<')
+						++addlen;
+					htmlParse::context[nowpage] = (info.substring(i + 1, addlen));
+					viscontext[nowpage] = true;
+					return context.len() - 1;
+				}
+			}
+		}
+		if (visdate[nowpage] < 1 && argclass == "authi")
+			visdate[nowpage] ++;
+		if (visdate[nowpage] == 1 && argclass == "authi") {
+			std::string buf;
+			std::getline(input, buf);
+			ds::CharString info(buf);
+			int infolen = info.len(), place = 0, addlen = 0;
+			for (int i = 0; i < infolen; i++)
+				if (info[i] == '>') {
+					place++;
+					addlen = 0;
+					if (place == TYPEPLACE::date) {
+						while (i + addlen + 1 < infolen&&info[i + addlen + 1] != '<')
+							++addlen;
+						date[nowpage] = (info.substring(i + 1, addlen));
+						visdate[nowpage]++;
 						return context.len() - 1;
 					}
 				}

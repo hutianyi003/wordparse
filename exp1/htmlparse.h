@@ -9,13 +9,16 @@ namespace TAGTYPE {
 	static const ds::CharString div = ds::CharString("div");
 }
 namespace TYPEPLACE {
-	const int bigtype(9);
-	const int smalltype(13);
-	const int title(17);
-	const int posttype(1);
-	const int author(2);
-
+	const int
+		bigtype(9),
+		smalltype(13),
+		title(17),
+		posttype(1),
+		author(2),
+		date(1),
+		context(1);
 }
+
 class htmlParse {
 public:
 	htmlParse(int tnumber = 0);
@@ -40,10 +43,11 @@ private:
 
 	container badtags;
 	container bigtype, smalltype, title, author, context, date, posttype;
-	std::vector<bool> visauthor;
+	std::vector<bool> visauthor, viscontext;
+	std::vector<int> visdate;
 
 	int pagenumber;
 	int nowpage;
 
-	void debugOutput(const container& out);
+	void debugOutput();
 };
