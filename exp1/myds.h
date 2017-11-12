@@ -39,7 +39,7 @@ namespace ds {
 				return 0;
 			return sp[p];
 		}
-		int indexOf(const CharString& sub);
+		int indexOf(const CharString& sub)const;
 		int find(const texttype& tch);
 		CharString substring(int pos,int sublen)const;
 

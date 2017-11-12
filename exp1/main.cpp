@@ -37,6 +37,6 @@ int main() {
 	}
 	output << c;*/
 	htmlParse hp(100);
-	hp.parseAllHtml();
+	hp.parseAllHtml("buffer\\page");
 	return 0;
 }

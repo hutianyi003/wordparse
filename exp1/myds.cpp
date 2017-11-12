@@ -35,7 +35,7 @@ const int ds::CharString::len() const
 	return lenth;
 }
 
-int ds::CharString::indexOf(const CharString & sub)
+int ds::CharString::indexOf(const CharString & sub) const
 {
 	int sublen = sub.len();
 	if (sublen > lenth)
