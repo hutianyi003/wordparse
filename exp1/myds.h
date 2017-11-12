@@ -25,6 +25,7 @@ namespace ds {
 		CharString(const texttype* s);
 		CharString(std::string& s);
 		CharString(const CharString& rhs);
+		CharString& operator = (const CharString &rhs);
 		~CharString();
 
 		inline const int len() const;
@@ -33,11 +34,16 @@ namespace ds {
 		inline texttype& operator[] (int p) {
 			return sp[p];
 		}
+		inline texttype operator[] (int p) const {
+			if (p >= lenth)
+				return 0;
+			return sp[p];
+		}
 		int indexOf(const CharString& sub);
+		int find(const texttype& tch);
 		CharString substring(int pos,int sublen)const;
 
 		void concat(const CharString& rhs);
-		CharString& operator = (const CharString &rhs);
 		bool operator == (const CharString& rhs)const;
 		//const CharString operator + (const CharString& rhs);
 		//bool assign(const CharString& rhs);
@@ -112,6 +118,9 @@ namespace ds {
 	template<class datatype>
 	inline datatype Stack<datatype>::top()
 	{
+		if (!stacksize) {
+			throw 0;
+		}
 		return base[stacksize-1];
 	}
 	template<class datatype>

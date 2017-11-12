@@ -12,6 +12,7 @@
 
 wordParse::wordParse()
 {
+
 }
 
 wordParse::~wordParse()
@@ -20,7 +21,6 @@ wordParse::~wordParse()
 
 bool wordParse::getDic(const std::string & tfilename)
 {
-	const int bufferlen = 50;
 
 	std::ifstream input(tfilename);
 	if(!input)
@@ -32,13 +32,38 @@ bool wordParse::getDic(const std::string & tfilename)
 		std::wcstombs(cbuf, temp, bufferlen);
 		cbuf[wcslen(temp) * 2] = '\0';
 		std::string str(cbuf);
-		//check that if two words have the same hashkey 
-		//no such case
-		//if(hashtable.insert(str).second == false)
-		//	std::cout << cbuf << std::endl;
 		hashtable.insert(str);
 		delete[] temp;
 	}
+	return true;
+}
+
+bool wordParse::getSpdic(const std::string & tfilename)
+{
+
+	std::ifstream input(tfilename);
+	if(!input)
+		return false;
+	std::string buffer;
+	char cbuf[bufferlen];
+	while (getline(input, buffer)) {
+		wchar_t *temp = utf8ToUnicode(buffer);
+		std::wcstombs(cbuf, temp, bufferlen);
+		cbuf[wcslen(temp) * 2] = '\0';
+		std::string str(cbuf);
+		sptable.insert(str);
+		delete[] temp;
+	}
+	return true;
+}
+
+bool wordParse::exist(const std::string & word)
+{
+	if (sptable.find(word) != sptable.end())
+		return true;
+	if (hashtable.find(word) != hashtable.end())
+		return true;
+	return false;
 }
 
 wchar_t * wordParse::utf8ToUnicode(const std::string utf8s)

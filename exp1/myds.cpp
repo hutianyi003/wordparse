@@ -53,6 +53,14 @@ int ds::CharString::indexOf(const CharString & sub)
 	return -1;
 }
 
+int ds::CharString::find(const texttype & tch)
+{
+	for (int i = 0; i < lenth; i++)
+		if (sp[i] == tch)
+			return i;
+	return -1;
+}
+
 ds::texttype * const ds::CharString::getbase() const
 {
 	return sp;
@@ -60,7 +68,7 @@ ds::texttype * const ds::CharString::getbase() const
 
 ds::CharString ds::CharString::substring(int pos, int sublen)const
 {
-	if (pos < 0 || pos >= lenth)
+	if (pos < 0 || pos >= lenth || sublen == 0)
 		return CharString();
 	if (pos + sublen > lenth)
 		sublen = lenth - pos;

@@ -5,6 +5,7 @@
 #include "webdownload.h"
 #include "myds.h"
 #include "wordparse.h"
+#include "htmlparse.h"
 
 void output(ds::CharString& s) {
 	int l = s.len();
@@ -19,10 +20,6 @@ int main() {
 		//std::cout << "ok" << std::endl;
 	//std::ofstream output("testchi1.txt");
 	/*
-	std::locale china("chi");
-
-	wds::CharString s;
-	
 	std::wifstream input("testchi1.txt");
 	input.imbue(china);
 	wchar_t c;
@@ -39,7 +36,7 @@ int main() {
 		std::cout << "failed" << std::endl;
 	}
 	output << c;*/
-	wordParse wp;
-	wp.getDic("common.dic");
+	htmlParse hp(100);
+	hp.parseAllHtml();
 	return 0;
 }
