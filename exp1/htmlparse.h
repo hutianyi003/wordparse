@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string>
-#include "myds.h"
 #include <vector>
+#include "myds.h"
 
 namespace TAGTYPE {
 	static const ds::CharString meta = ds::CharString("meta");
@@ -43,11 +43,10 @@ private:
 
 	container badtags;
 	container bigtype, smalltype, title, author, context, date, posttype;
-	std::vector<bool> visauthor, viscontext;
+	std::vector<bool> visauthor, viscontext, isgbk;
 	std::vector<int> visdate;
 
 	int pagenumber;
 	int nowpage;
 
-	void debugOutput();
 };

@@ -1,7 +1,6 @@
 #include "htmlparse.h"
 #include "myds.h"
 #include <fstream>
-#include <iostream>
 
 htmlParse::htmlParse(int tnumber) :
 	pagenumber(tnumber),
@@ -14,7 +13,8 @@ htmlParse::htmlParse(int tnumber) :
 	context(tnumber),
 	visauthor(tnumber,false),
 	viscontext(tnumber,false),
-	visdate(tnumber, 0)
+	visdate(tnumber, 0),
+	isgbk(tnumber,false)
 {
 }
 
@@ -24,23 +24,9 @@ void output(const ds::CharString &out) {
 		putchar(out[i]);
 	putchar('\n');
 }
-void htmlParse::debugOutput()
-{
-	int len = 0;
-	for (int i = 0; i < pagenumber; i++) {
-		output(bigtype[i]);
-		output(smalltype[i]);
-		output(posttype[i]);
-		output(title[i]);
-		output(author[i]);
-		output(date[i]);
-		output(context[i]);
-		putchar('\n');
-	}
-}
+
 htmlParse::~htmlParse()
 {
-	//debugOutput();
 }
 
 bool htmlParse::parse(const std::string & tfilename)
@@ -220,8 +206,10 @@ int htmlParse::getinfo(
 			int testlen = 0;
 			while (testlen < infolen&&info[testlen] == ' ')
 				testlen++;
-			if (info[testlen] != '<')
+			if (info[testlen] != '<') {
 				place++;
+				isgbk[nowpage] = true;
+			}
 			for (int i = testlen-1; i < infolen; i++) {
 				if (info[i] == '>') {
 					place++;

@@ -27,6 +27,7 @@ bool wordParse::getDic(const std::string & tfilename)
 		return false;
 	std::string buffer;
 	char cbuf[bufferlen];
+	getline(input, buffer);
 	while (getline(input, buffer)) {
 		wchar_t *temp = utf8ToUnicode(buffer);
 		std::wcstombs(cbuf, temp, bufferlen);
@@ -46,10 +47,12 @@ bool wordParse::getSpdic(const std::string & tfilename)
 		return false;
 	std::string buffer;
 	char cbuf[bufferlen];
+	getline(input, buffer);
 	while (getline(input, buffer)) {
 		wchar_t *temp = utf8ToUnicode(buffer);
 		std::wcstombs(cbuf, temp, bufferlen);
 		cbuf[wcslen(temp) * 2] = '\0';
+		putchar(cbuf[0]);
 		std::string str(cbuf);
 		sptable.insert(str);
 		delete[] temp;

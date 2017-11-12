@@ -33,6 +33,9 @@
     <ClCompile Include="mywds.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="webanalysis.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="webdownload.h">
@@ -48,6 +51,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="mywds.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="webanalysis.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
