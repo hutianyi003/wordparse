@@ -81,6 +81,14 @@ bool webAnalysis::divide(ds::CharStringLink & store, const ds::CharString & cont
 {
 	int len = context.len();
 	for (int i = 0; i < len; i++) {
+		if (isdigit(context[i])) {
+			int addlen = 1;
+			while (isdigit(context[i + addlen])) {
+				addlen++;
+			}
+			store.add(context.substring(i, addlen));
+			i += (addlen - 1);
+		}
 		for (int j = MaxDivideLenth; j > 0; j--) {
 			if (i + j * 2 > len)
 				continue;
