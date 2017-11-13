@@ -30,6 +30,7 @@ namespace ds {
 
 		inline const int len() const;
 		inline texttype* const getbase()const;
+		std::string cpp_str() const;
 
 		inline texttype& operator[] (int p) {
 			return sp[p];

@@ -20,14 +20,16 @@ namespace TYPEPLACE {
 }
 
 class htmlParse {
+	typedef std::vector<ds::CharString> container;
 public:
 	htmlParse(int tnumber = 0);
 	~htmlParse();
 	bool parse(const std::string &tfilename);
 	bool parseAllHtml(const std::string &prefilename);
+	std::vector<bool> isgbk;
+	container bigtype, smalltype, title, author, context, date, posttype;
 
 private:
-	typedef std::vector<ds::CharString> container;
 
 	ds::CharString gettype(const ds::CharString &tag);
 	ds::CharString getTagArg(const ds::CharString &tag, const ds::CharString &arg);
@@ -42,8 +44,7 @@ private:
 	);
 
 	container badtags;
-	container bigtype, smalltype, title, author, context, date, posttype;
-	std::vector<bool> visauthor, viscontext, isgbk;
+	std::vector<bool> visauthor, viscontext;
 	std::vector<int> visdate;
 
 	int pagenumber;

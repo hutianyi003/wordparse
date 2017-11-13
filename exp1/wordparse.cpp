@@ -1,13 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "wordparse.h"
-#include "mywds.h"
 #include <fstream>
 #include <string>
-#include <iostream>
 #include <cstdlib>
 #include <Windows.h>
-#include <set>
 
 
 wordParse::wordParse()
@@ -59,13 +56,18 @@ bool wordParse::getSpdic(const std::string & tfilename)
 	return true;
 }
 
-bool wordParse::exist(const std::string & word)
+bool wordParse::exist(const std::string word)
 {
 	if (sptable.find(word) != sptable.end())
 		return true;
 	if (hashtable.find(word) != hashtable.end())
 		return true;
 	return false;
+}
+
+void wordParse::entityToGbk(ds::CharString & totrans)
+{
+	return;
 }
 
 wchar_t * wordParse::utf8ToUnicode(const std::string utf8s)

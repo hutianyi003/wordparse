@@ -66,6 +66,11 @@ ds::texttype * const ds::CharString::getbase() const
 	return sp;
 }
 
+std::string ds::CharString::cpp_str() const
+{
+	return std::string(sp, lenth);
+}
+
 ds::CharString ds::CharString::substring(int pos, int sublen)const
 {
 	if (pos < 0 || pos >= lenth || sublen == 0)
