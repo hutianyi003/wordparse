@@ -67,7 +67,12 @@ namespace ds {
 		bool add(const CharString &rhs,int place = -1);
 		bool remove(int place);
 		int search(const CharString& searchfor)const;
-		inline int size()const;
+		CharString get(int place);
+
+		inline int size()const {
+			return lenth;
+		}
+
 	private:
 		linkNode * head, *tail;
 		int lenth;

@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "htmlparse.h"
 #include "wordparse.h"
 
@@ -17,7 +18,7 @@ private:
 	htmlParse hp;
 	wordParse wp;
 	std::string webprefilename;
-	ds::CharStringLink titlewords, contextwords;
+	std::vector<ds::CharStringLink> titlewords, contextwords;
 
 	int pagenumber;
 };

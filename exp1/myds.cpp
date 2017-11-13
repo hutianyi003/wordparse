@@ -206,9 +206,15 @@ int ds::CharStringLink::search(const CharString & searchfor) const
 	return place;
 }
 
-inline int ds::CharStringLink::size() const
+ds::CharString ds::CharStringLink::get(int place)
 {
-	return lenth;
+	if (place < 0 || place >= lenth)
+		return CharString();
+	linkNode *p = head;
+	while (place-- > 0) {
+		p = p->next;
+	}
+	return p->d;
 }
 
 ds::linkNode::linkNode(const CharString & td, linkNode * tnext):

@@ -4,7 +4,9 @@
 webAnalysis::webAnalysis(int tnumber, const std::string& pre) :
 	pagenumber(tnumber),
 	hp(tnumber),
-	webprefilename(pre)
+	webprefilename(pre),
+	titlewords(tnumber),
+	contextwords(tnumber)
 {
 }
 
@@ -37,13 +39,12 @@ bool webAnalysis::divideWords()
 
 bool webAnalysis::divideOnePage(int now)
 {
-	//std::cout << now << std::endl;
 	if (!hp.isgbk[now]) {
 		wordParse::entityToGbk(hp.context[now]);
 	}
-	if (!divide(titlewords, hp.title[now]))
+	if (!divide(titlewords[now], hp.title[now]))
 		return false;
-	if (!divide(contextwords, hp.context[now]))
+	if (!divide(contextwords[now], hp.context[now]))
 		return false;
 	return true;
 }
@@ -59,11 +60,9 @@ bool webAnalysis::divide(ds::CharStringLink & store, const ds::CharString & cont
 			if (wp.exist(cut.cpp_str()))
 			{
 				store.add(cut);
-				//std::cout << cut.cpp_str() << ' ';
 				i += (2 * j - 1);
 			}
 		}
 	}
-	//std::cout << std::endl;
 	return true;
 }
