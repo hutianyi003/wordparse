@@ -11,7 +11,7 @@ public:
 	bool getSpdic(const std::string& tfilename);
 	bool exist(const std::string word);
 
-	void entityToGbk(ds::CharString& totrans);
+	static void entityToGbk(ds::CharString& totrans);
 
 private:
 	static const int bufferlen = 40;

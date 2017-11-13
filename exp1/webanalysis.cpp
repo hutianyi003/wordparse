@@ -37,8 +37,9 @@ bool webAnalysis::divideWords()
 
 bool webAnalysis::divideOnePage(int now)
 {
+	//std::cout << now << std::endl;
 	if (!hp.isgbk[now]) {
-		return true;
+		wordParse::entityToGbk(hp.context[now]);
 	}
 	if (!divide(titlewords, hp.title[now]))
 		return false;
