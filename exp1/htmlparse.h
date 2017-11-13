@@ -4,10 +4,12 @@
 #include <vector>
 #include "myds.h"
 
+//for tag type
 namespace TAGTYPE {
 	static const ds::CharString meta = ds::CharString("meta");
 	static const ds::CharString div = ds::CharString("div");
 }
+//support html parse
 namespace TYPEPLACE {
 	const int
 		bigtype(9),
@@ -25,12 +27,14 @@ public:
 	htmlParse(int tnumber = 0);
 	~htmlParse();
 	bool parse(const std::string &tfilename);
-	bool parseAllHtml(const std::string &prefilename);
+	bool parseAllHtml(const std::string &prefilename);//use it to parse all html
 	std::vector<bool> isgbk;
+	// containers below are final htmlparse results
 	container bigtype, smalltype, title, author, context, date, posttype;
 
 private:
 
+	//these functions can use for tag check
 	ds::CharString gettype(const ds::CharString &tag);
 	ds::CharString getTagArg(const ds::CharString &tag, const ds::CharString &arg);
 	inline bool isSelfClose(const ds::CharString &tag);
@@ -43,6 +47,7 @@ private:
 		int endplace
 	);
 
+	//store parse-needing info
 	container badtags;
 	std::vector<bool> visauthor, viscontext;
 	std::vector<int> visdate;

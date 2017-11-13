@@ -14,6 +14,7 @@ namespace ds {
 		int size();
 	private:
 		const static int EVERY_ADD_SIZE = 256;
+		void operator=(const Stack& rhs);
 		int stacksize, maxstacksize;
 		datatype *base;
 	};
@@ -47,8 +48,6 @@ namespace ds {
 		void concat(const CharString& rhs);
 		void concat(const texttype& rhs);
 		bool operator == (const CharString& rhs)const;
-		//const CharString operator + (const CharString& rhs);
-		//bool assign(const CharString& rhs);
 	private:
 		texttype *sp;
 		int lenth;

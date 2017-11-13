@@ -4,6 +4,7 @@
 
 int main() {
 	setlocale(LC_ALL, "chi");
+	//start the project
 	webAnalysis wa(100, "buffer\\page");
 	wa.extractInfo();
 	wa.initDictionary();
