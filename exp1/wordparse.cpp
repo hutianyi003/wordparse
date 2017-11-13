@@ -52,7 +52,6 @@ bool wordParse::getSpdic(const std::string & tfilename)
 		wchar_t *temp = utf8ToUnicode(buffer);
 		std::wcstombs(cbuf, temp, bufferlen);
 		cbuf[wcslen(temp) * 2] = '\0';
-		putchar(cbuf[0]);
 		std::string str(cbuf);
 		sptable.insert(str);
 		delete[] temp;

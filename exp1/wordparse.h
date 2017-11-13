@@ -11,7 +11,7 @@ public:
 	inline bool exist(const std::string& word);
 
 private:
-	static const int bufferlen = 30;
+	static const int bufferlen = 100;
 	wchar_t* utf8ToUnicode(const std::string utf8s);
 	std::unordered_set<std::string, std::hash<std::string> > hashtable;
 
