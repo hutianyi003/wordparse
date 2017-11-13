@@ -92,6 +92,16 @@ void ds::CharString::concat(const CharString & rhs)
 	sp = temps;
 }
 
+void ds::CharString::concat(const texttype & rhs)
+{
+	texttype * temps = new texttype[lenth + sizeof(texttype)];
+	std::memcpy(temps, sp, lenth * sizeof(texttype));
+	temps[lenth] = rhs;
+	lenth += sizeof(texttype);
+	delete[] sp;
+	sp = temps;
+}
+
 ds::CharString & ds::CharString::operator=(const CharString & rhs)
 {
 	if (this == &rhs)

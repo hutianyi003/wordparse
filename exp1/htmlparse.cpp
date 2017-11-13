@@ -18,13 +18,6 @@ htmlParse::htmlParse(int tnumber) :
 {
 }
 
-void output(const ds::CharString &out) {
-	int len = out.len();
-	for (int i = 0; i < len; i++)
-		putchar(out[i]);
-	putchar('\n');
-}
-
 htmlParse::~htmlParse()
 {
 }

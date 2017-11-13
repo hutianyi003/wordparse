@@ -45,6 +45,7 @@ namespace ds {
 		CharString substring(int pos,int sublen)const;
 
 		void concat(const CharString& rhs);
+		void concat(const texttype& rhs);
 		bool operator == (const CharString& rhs)const;
 		//const CharString operator + (const CharString& rhs);
 		//bool assign(const CharString& rhs);

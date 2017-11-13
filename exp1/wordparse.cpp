@@ -9,7 +9,6 @@
 
 wordParse::wordParse()
 {
-
 }
 
 wordParse::~wordParse()
