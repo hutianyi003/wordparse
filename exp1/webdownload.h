@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <tchar.h>
 class webDownloader {
 public:
 	webDownloader(const std::string&,const int);

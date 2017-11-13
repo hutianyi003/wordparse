@@ -1,5 +1,5 @@
 #include "webanalysis.h"
-#include <iostream>
+#include <fstream>
 
 webAnalysis::webAnalysis(int tnumber, const std::string& pre) :
 	pagenumber(tnumber),
@@ -37,6 +37,34 @@ bool webAnalysis::divideWords()
 	return true;
 }
 
+void webAnalysis::output(const std::string & outputfilename)
+{
+	std::ofstream out(outputfilename);
+	std::ifstream input("resulttemplate.txt");
+	if (!input)
+		return;
+	std::string buffer;
+	std::getline(input, buffer);
+	out << buffer << std::endl;
+	for (int i = 0; i < pagenumber; i++) {
+		std::getline(input, buffer);
+		out << i + 1 << ",\"" << buffer << "\",";
+		if (hp.title[i].len() == 0) {
+			out << "NA,NA,NA,NA,NA,NA,NA,NA" << std::endl;
+			continue;
+		}
+		out << '\"' << hp.bigtype[i].cpp_str() << '\"' << ',';
+		out << '\"' << hp.smalltype[i].cpp_str() << '\"' << ',';
+		out << '\"' << hp.title[i].cpp_str() << '\"' << ',';
+		out << '\"' << hp.context[i].cpp_str() << '\"' << ',';
+		out << '\"' << hp.author[i].cpp_str() << '\"' << ',';
+		out << '\"' << hp.date[i].cpp_str() << '\"' << ',';
+		out << '\"' << hp.posttype[i].cpp_str() << '\"' << ',' << '\"';
+		outputWords(i, out);
+		out << '\"' << std::endl;
+	}
+}
+
 bool webAnalysis::divideOnePage(int now)
 {
 	if (!hp.isgbk[now]) {
@@ -65,4 +93,25 @@ bool webAnalysis::divide(ds::CharStringLink & store, const ds::CharString & cont
 		}
 	}
 	return true;
+}
+
+void webAnalysis::outputWords(int page,std::ofstream& output)
+{
+	std::unordered_set<std::string, std::hash<std::string>> has;
+	int size = titlewords[page].size();
+	for (int i = 0; i < size; i++) {
+		std::string word(titlewords[page].get(i).cpp_str());
+		if (has.find(word) == has.end()) {
+			output << word << ' ';
+			has.insert(word);
+		}
+	}
+	size = contextwords[page].size();
+	for (int i = 0; i < size; i++) {
+		std::string word(contextwords[page].get(i).cpp_str());
+		if (has.find(word) == has.end()) {
+			output << word << ' ';
+			has.insert(word);
+		}
+	}
 }

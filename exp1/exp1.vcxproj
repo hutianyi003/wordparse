@@ -120,7 +120,6 @@
     <ClCompile Include="htmlparse.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="myds.cpp" />
-    <ClCompile Include="mywds.cpp" />
     <ClCompile Include="webanalysis.cpp" />
     <ClCompile Include="webdownload.cpp" />
     <ClCompile Include="wordparse.cpp" />
@@ -128,7 +127,6 @@
   <ItemGroup>
     <ClInclude Include="htmlparse.h" />
     <ClInclude Include="myds.h" />
-    <ClInclude Include="mywds.h" />
     <ClInclude Include="webanalysis.h" />
     <ClInclude Include="webdownload.h" />
     <ClInclude Include="wordparse.h" />

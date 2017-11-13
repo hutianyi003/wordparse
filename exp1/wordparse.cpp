@@ -64,10 +64,16 @@ bool wordParse::exist(const std::string word)
 	return false;
 }
 
-wchar_t transOneCharacter(const ds::CharString& oneword) {
+wchar_t transOneCharacter(const ds::CharString& oneword, int& place) {
 	int sum = 0;
-	for (int i = 2; i <= 6; i++) {
-		sum = sum * 10 + oneword[i] - '0';
+	if (oneword[place+1] == 'n') {
+		place += 5;
+		return wchar_t(L' ');
+	}
+	place += 2;
+	while (isdigit(oneword[place])) {
+		sum = sum * 10 + oneword[place] - '0';
+		place++;
 	}
 	return wchar_t((sum & 0x0000FFFF));
 }
@@ -78,8 +84,7 @@ void wordParse::entityToGbk(ds::CharString & totrans)
 	std::vector<wchar_t> wcharunicode;
 	for (int i = 0; i < len; i++) {
 		if (totrans[i] == '&') {
-			wcharunicode.push_back(transOneCharacter(totrans.substring(i, 8)));
-			i = i + 7;
+			wcharunicode.push_back(transOneCharacter(totrans, i));
 		}
 		else {
 			wcharunicode.push_back(0x00FF & totrans[i]);
@@ -95,8 +100,9 @@ void wordParse::entityToGbk(ds::CharString & totrans)
 
 	int csize = 2 * wsize;
 	char * chargbk = new char[csize + 1];
+	memset(chargbk, 0, csize + 1);
 	WideCharToMultiByte(CP_ACP, NULL, wc, wcslen(wc), chargbk, csize, NULL, NULL);
-	chargbk[csize] = 0;
+	chargbk[csize] = '\0';
 
 	totrans = ds::CharString(chargbk);
 	delete[] wc;

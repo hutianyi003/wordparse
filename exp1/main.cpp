@@ -1,6 +1,4 @@
 #include <clocale>
-#include "webdownload.h"
-#include "myds.h"
 #include "webanalysis.h"
 
 
@@ -10,5 +8,6 @@ int main() {
 	wa.extractInfo();
 	wa.initDictionary();
 	wa.divideWords();
+	wa.output("output\\result.csv");
 	return 0;
 }

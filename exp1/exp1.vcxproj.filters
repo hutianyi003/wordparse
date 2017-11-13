@@ -30,9 +30,6 @@
     <ClCompile Include="wordparse.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mywds.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="webanalysis.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="wordparse.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mywds.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="webanalysis.h">
