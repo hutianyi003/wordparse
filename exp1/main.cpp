@@ -1,14 +1,17 @@
 #include <clocale>
 #include "webanalysis.h"
+#include "webdownload.h" 
 
 
 int main() {
-	setlocale(LC_ALL, "chi");
 	//start the project
-	webAnalysis wa(100, "buffer\\page");
-	wa.extractInfo();
-	wa.initDictionary();
-	wa.divideWords();
-	wa.output("output\\result.csv");
+	webDownloader downhtml("input\\url.csv", 10);
+	downhtml.getHtml("buffer");
+	setlocale(LC_ALL, "chi");
+	//webAnalysis wa(100, "buffer\\page");
+	//wa.extractInfo();
+	//wa.initDictionary();
+	//wa.divideWords();
+	//wa.output("output\\result.csv");
 	return 0;
 }
