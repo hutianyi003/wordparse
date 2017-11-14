@@ -25,7 +25,7 @@ htmlParse::~htmlParse()
 bool htmlParse::parse(const std::string & tfilename)
 {
 	std::ifstream input(tfilename);
-	if (!input)
+	if (!input)//check if file opened success
 		return false;
 
 	using namespace ds;
@@ -35,7 +35,7 @@ bool htmlParse::parse(const std::string & tfilename)
 		CharString line(stringbuf);
 		int len = line.len();
 		for (int i = 0; i < len; i++)
-			if (line[i] == '<') {
+			if (line[i] == '<') {//find tag
 				int end = i;
 				for(int j=i+1;j<len;j++)
 					if (line[j] == '>') {
@@ -44,7 +44,7 @@ bool htmlParse::parse(const std::string & tfilename)
 					}
 				CharString tag = line.substring(i, end - i + 1);
 				CharString type = gettype(tag);
-				if (!isSelfClose(tag)) {
+				if (!isSelfClose(tag)) {//check if it is self closed
 					if (isClose(tag)) {
 						if (!stack.empty()) {
 							CharString starttype = gettype(stack.top());
@@ -52,14 +52,14 @@ bool htmlParse::parse(const std::string & tfilename)
 								stack.pop();
 						}
 						else {
-							addBadTag(tag);
+							addBadTag(tag);//it is not normal closed tag
 						}
 					}
 					else {
 						stack.push(tag);
 					}
 				}
-				i = getinfo(line, tag, input, end + 1) - 1;
+				i = getinfo(line, tag, input, end + 1) - 1;//from html get info
 			}
 	}
 	return true;
@@ -75,6 +75,7 @@ bool htmlParse::parseAllHtml(const std::string &prefilename)
 	return true;
 }
 
+//get html type
 ds::CharString htmlParse::gettype(const ds::CharString & tag)
 {
 	int len = tag.len(), start = 0;
@@ -86,6 +87,7 @@ ds::CharString htmlParse::gettype(const ds::CharString & tag)
 	return tag.substring(start, addlen-1);
 }
 
+//get tag's args
 ds::CharString htmlParse::getTagArg(const ds::CharString & tag, const ds::CharString & arg)
 {
 	int place = tag.indexOf(arg), len = tag.len();
@@ -130,6 +132,7 @@ int htmlParse::getinfo(
 	int len = context.len();
 	if (type == TAGTYPE::div) {
 		ds::CharString argclass = getTagArg(tag, "class");
+		//get bigtype smalltype and title
 		if (argclass == "z") {
 			std::string buf;
 			std::getline(input, buf);
@@ -157,6 +160,7 @@ int htmlParse::getinfo(
 				}
 			return context.len() - 1;
 		}
+		//get posttype
 		if (argclass == "ts z h1") {
 			std::string buf;
 			std::getline(input, buf);
@@ -174,6 +178,7 @@ int htmlParse::getinfo(
 					}
 				}
 		}
+		//get author
 		if (!visauthor[nowpage] && argclass == "authi") {
 			const ds::CharString &info = context;
 			int infolen = info.len(), place = 0, addlen = 0;
@@ -190,6 +195,7 @@ int htmlParse::getinfo(
 					}
 				}
 		}
+		// get context
 		if (!viscontext[nowpage] && argclass == "t_fsz") {
 			std::string buf;
 			std::getline(input, buf);
@@ -219,6 +225,7 @@ int htmlParse::getinfo(
 		}
 		if (visdate[nowpage] < 1 && argclass == "authi")
 			visdate[nowpage] ++;
+		//get date
 		if (visdate[nowpage] == 1 && argclass == "authi") {
 			std::string buf;
 			std::getline(input, buf);

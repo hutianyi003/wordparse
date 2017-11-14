@@ -13,7 +13,7 @@ namespace ds {
 		bool empty();
 		int size();
 	private:
-		const static int EVERY_ADD_SIZE = 256;
+		const static int EVERY_ADD_SIZE = 256;//every time add memory size
 		void operator=(const Stack& rhs);
 		int stacksize, maxstacksize;
 		datatype *base;
@@ -33,6 +33,7 @@ namespace ds {
 		inline texttype* const getbase()const;
 		std::string cpp_str() const;
 
+		//inline fuction must write in .h files
 		inline texttype& operator[] (int p) {
 			return sp[p];
 		}
@@ -78,6 +79,7 @@ namespace ds {
 	};
 
 
+	//templates must write in .h files
 /*------------------------stack--------------------------------*/
 	template<class datatype>
 	inline Stack<datatype>::Stack() :stacksize(0), maxstacksize(EVERY_ADD_SIZE)

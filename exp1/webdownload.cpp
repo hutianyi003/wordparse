@@ -8,7 +8,7 @@
 #include <direct.h>
 #pragma comment(lib,"urlmon.lib")
 
-webDownloader::webDownloader(const std::string& tname, const int tn) :
+webDownloader::webDownloader(const std::string& tname,int& tn) :
 	inputfilename(tname), urlnumber(tn)
 {
 }
@@ -31,9 +31,9 @@ bool webDownloader::getHtml(const std::string& Path)
 	if (_mkdir(Path.c_str()) != 0 && errno != EEXIST)
 			return false;
 	
+	//use threads to download htmls
 	std::vector<std::thread> webthreads;
 	for (int i = 0; i < urlnumber; i++) {
-		//getonepage(url[i], (Path + "\\page" + std::to_string(i) + ".html"));
 		webthreads.push_back(std::thread(getonepage, url[i], (Path+"\\page" + std::to_string(i) + ".html")));
 	}
 	for (int i = 0; i < urlnumber; i++)
@@ -43,6 +43,7 @@ bool webDownloader::getHtml(const std::string& Path)
 
 bool webDownloader::getUrlFromCsv()
 {
+	//from inputfile to get urls and store
 	std::ifstream input(inputfilename);
 	if (!input) {
 		return false;
@@ -51,6 +52,7 @@ bool webDownloader::getUrlFromCsv()
 	std::string turl;
 	getline(input, temp);//ignore the first line
 	while (std::getline(input, temp)) {
+		urlnumber++;
 		for (std::string::iterator i = temp.begin(); i != temp.end(); i++) {
 			if ((*i) == '"') {
 				turl.assign(i + 1, temp.end() - 1);
@@ -58,11 +60,5 @@ bool webDownloader::getUrlFromCsv()
 			}
 		}
 		url.push_back(turl);
-		if (url.size() == urlnumber)
-			break;
 	}
-	if (url.size() == urlnumber)//check if success
-		return true;
-	else
-		return false;
 }

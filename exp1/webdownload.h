@@ -3,12 +3,13 @@
 #include <vector>
 class webDownloader {
 public:
-	webDownloader(const std::string&,const int);
+	webDownloader(const std::string&,int& number);
 	~webDownloader();
 	bool getHtml(const std::string&);
-private:
 	std::vector<std::string> url;
+
+private:
 	std::string inputfilename;
-	int urlnumber;
+	int& urlnumber;
 	bool getUrlFromCsv();
 };
