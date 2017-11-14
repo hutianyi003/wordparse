@@ -1,4 +1,5 @@
 #include "webdownload.h"
+#include <thread>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -16,6 +17,11 @@ webDownloader::~webDownloader()
 {
 }
 
+void getonepage(const std::string from, const std::string to) 
+{
+	HRESULT result = URLDownloadToFile(0, from.c_str(), to.c_str(), 0, NULL);
+}
+
 bool webDownloader::getHtml(const std::string& Path)
 {
 	if (!getUrlFromCsv())
@@ -25,19 +31,13 @@ bool webDownloader::getHtml(const std::string& Path)
 	if (_mkdir(Path.c_str()) != 0 && errno != EEXIST)
 			return false;
 	
-	std::cout << "Start getting htmls from url.csv" << std::endl;
+	std::vector<std::thread> webthreads;
 	for (int i = 0; i < urlnumber; i++) {
-		std::string filepath(Path);
-		filepath += ("\\page" + std::to_string(i) + ".html");
-		std::wstring wfilepath;
-		wfilepath.assign(filepath.begin(), filepath.end());
-		HRESULT result = URLDownloadToFileW(0, url[i].c_str(), const_cast<LPWSTR>(wfilepath.c_str()), 0, NULL);
-		if (result != S_OK)
-			return false;
-		if (i % 10 == 9) {
-			std::cout << i + 1 << " has completed" << std::endl;
-		}
+		//getonepage(url[i], (Path + "\\page" + std::to_string(i) + ".html"));
+		webthreads.push_back(std::thread(getonepage, url[i], (Path+"\\page" + std::to_string(i) + ".html")));
 	}
+	for (int i = 0; i < urlnumber; i++)
+		webthreads[i].join();
 	return true;
 }
 
@@ -48,7 +48,7 @@ bool webDownloader::getUrlFromCsv()
 		return false;
 	}
 	std::string temp;
-	std::wstring turl;
+	std::string turl;
 	getline(input, temp);//ignore the first line
 	while (std::getline(input, temp)) {
 		for (std::string::iterator i = temp.begin(); i != temp.end(); i++) {
