@@ -238,7 +238,7 @@ int htmlParse::getinfo(
 					if (place == TYPEPLACE::date) {
 						while (i + addlen + 1 < infolen&&info[i + addlen + 1] != '<')
 							++addlen;
-						date[nowpage] = (info.substring(i + 1, addlen));
+						date[nowpage] = (info.substring(i + 8, addlen - 7));//ignore three characters
 						visdate[nowpage]++;
 						return context.len() - 1;
 					}
