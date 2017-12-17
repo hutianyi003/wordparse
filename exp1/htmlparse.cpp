@@ -1,6 +1,7 @@
-#include "htmlparse.h"
-#include "myds.h"
 #include <fstream>
+
+#include "htmlparse.h"
+#include "Stack.h"
 
 htmlParse::htmlParse(int tnumber) :
 	pagenumber(tnumber),

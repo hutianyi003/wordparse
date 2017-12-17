@@ -1,5 +1,6 @@
-#include "webanalysis.h"
 #include <fstream>
+
+#include "webanalysis.h"
 
 webAnalysis::webAnalysis(int tnumber, 
 	const std::string& pre,

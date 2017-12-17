@@ -2,8 +2,8 @@
 
 #include <string>
 #include <vector>
-#include "myds.h"
 
+#include "CharString.h"
 //for tag type
 namespace TAGTYPE {
 	static const ds::CharString meta = ds::CharString("meta");

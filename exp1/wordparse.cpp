@@ -1,11 +1,11 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include "wordparse.h"
 #include <fstream>
 #include <string>
 #include <cstdlib>
 #include <Windows.h>
 
+#include "wordparse.h"
 
 wordParse::wordParse()
 {

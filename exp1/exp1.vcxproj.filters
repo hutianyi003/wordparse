@@ -18,9 +18,6 @@
     <ClCompile Include="webdownload.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="myds.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -33,12 +30,24 @@
     <ClCompile Include="webanalysis.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CharString.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CharStringLink.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="avl.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="hashtable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="avl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="webdownload.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="myds.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="htmlparse.h">
@@ -48,6 +57,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="webanalysis.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CharString.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CharStringLink.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="hashtable.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

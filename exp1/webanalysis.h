@@ -1,5 +1,7 @@
 #pragma once
+
 #include <vector>
+
 #include "htmlparse.h"
 #include "wordparse.h"
 

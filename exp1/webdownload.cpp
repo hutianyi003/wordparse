@@ -1,4 +1,3 @@
-#include "webdownload.h"
 #include <thread>
 #include <string>
 #include <iostream>
@@ -7,6 +6,8 @@
 #include <urlmon.h>
 #include <direct.h>
 #pragma comment(lib,"urlmon.lib")
+
+#include "webdownload.h"
 
 webDownloader::webDownloader(const std::string& tname,int& tn) :
 	inputfilename(tname), urlnumber(tn)
@@ -61,4 +62,5 @@ bool webDownloader::getUrlFromCsv()
 		}
 		url.push_back(turl);
 	}
+    return true;
 }

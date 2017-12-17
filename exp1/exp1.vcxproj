@@ -117,16 +117,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="avl.cpp" />
+    <ClCompile Include="CharString.cpp" />
+    <ClCompile Include="CharStringLink.cpp" />
+    <ClCompile Include="hashtable.cpp" />
     <ClCompile Include="htmlparse.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="myds.cpp" />
+    <ClCompile Include="avl.h" />
     <ClCompile Include="webanalysis.cpp" />
     <ClCompile Include="webdownload.cpp" />
     <ClCompile Include="wordparse.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CharString.h" />
+    <ClInclude Include="CharStringLink.h" />
+    <ClInclude Include="hashtable.h" />
     <ClInclude Include="htmlparse.h" />
-    <ClInclude Include="myds.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="webanalysis.h" />
     <ClInclude Include="webdownload.h" />
     <ClInclude Include="wordparse.h" />

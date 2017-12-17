@@ -1,7 +1,9 @@
 #pragma once
+
 #include <string>
 #include <unordered_set>
-#include "myds.h"
+
+#include "CharStringLink.h"
 
 class wordParse {
 public:
