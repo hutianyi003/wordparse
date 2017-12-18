@@ -45,6 +45,9 @@
     <ClCompile Include="avl.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="filelist.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="webdownload.h">
@@ -69,6 +72,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="hashtable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="filelist.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

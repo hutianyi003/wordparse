@@ -5,9 +5,9 @@
 
 int main() {
 	//download html and get urlnumber
-	int pagenumer = 0;
+	int pagenumer = 2000;
 	webDownloader downhtml("input\\url.csv", pagenumer);
-	downhtml.getHtml("buffer");
+	//downhtml.getHtml("buffer");
 
 	setlocale(LC_ALL, "chi");//set chinese language environment
 	//start the project

@@ -120,6 +120,7 @@
     <ClCompile Include="avl.cpp" />
     <ClCompile Include="CharString.cpp" />
     <ClCompile Include="CharStringLink.cpp" />
+    <ClCompile Include="filelist.cpp" />
     <ClCompile Include="hashtable.cpp" />
     <ClCompile Include="htmlparse.cpp" />
     <ClCompile Include="main.cpp" />
@@ -131,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="CharString.h" />
     <ClInclude Include="CharStringLink.h" />
+    <ClInclude Include="filelist.h" />
     <ClInclude Include="hashtable.h" />
     <ClInclude Include="htmlparse.h" />
     <ClInclude Include="Stack.h" />

@@ -18,7 +18,7 @@ webDownloader::~webDownloader()
 {
 }
 
-void getonepage(const std::string from, const std::string to) 
+void getonepage(const std::string& from, const std::string to) 
 {
 	HRESULT result = URLDownloadToFile(0, from.c_str(), to.c_str(), 0, NULL);
 }
@@ -34,10 +34,16 @@ bool webDownloader::getHtml(const std::string& Path)
 	
 	//use threads to download htmls
 	std::vector<std::thread> webthreads;
-	for (int i = 0; i < urlnumber; i++) {
+    int part_one = urlnumber / 2;
+	for (int i = 0; i < part_one; i++) {
 		webthreads.push_back(std::thread(getonepage, url[i], (Path+"\\page" + std::to_string(i) + ".html")));
 	}
-	for (int i = 0; i < urlnumber; i++)
+	for (int i = 0; i < part_one; i++)
+		webthreads[i].join();
+	for (int i = part_one; i < urlnumber; i++) {
+		webthreads.push_back(std::thread(getonepage, url[i], (Path+"\\page" + std::to_string(i) + ".html")));
+	}
+	for (int i = part_one; i < urlnumber; i++)
 		webthreads[i].join();
 	return true;
 }
