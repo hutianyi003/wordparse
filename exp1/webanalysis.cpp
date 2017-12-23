@@ -117,21 +117,21 @@ bool webAnalysis::divide(ds::CharStringLink & store, const ds::CharString & cont
 //ignore all repeated words
 void webAnalysis::outputWords(int page,std::ofstream& output)
 {
-	std::unordered_set<std::string, std::hash<std::string>> has;
+	//std::unordered_set<std::string, std::hash<std::string>> has;
 	int size = titlewords[page].size();
 	for (int i = 0; i < size; i++) {
 		std::string word(titlewords[page].get(i).cpp_str());
-		if (has.find(word) == has.end()) {
+		//if (has.find(word) == has.end()) {
 			output << word << ' ';
-			has.insert(word);
-		}
+		//	has.insert(word);
+		//}
 	}
 	size = contextwords[page].size();
 	for (int i = 0; i < size; i++) {
 		std::string word(contextwords[page].get(i).cpp_str());
-		if (has.find(word) == has.end()) {
+		//if (has.find(word) == has.end()) {
 			output << word << ' ';
-			has.insert(word);
-		}
+		//	has.insert(word);
+		//}
 	}
 }

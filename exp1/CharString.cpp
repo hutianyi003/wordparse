@@ -24,9 +24,16 @@ ds::CharString::CharString(const CharString & rhs) :lenth(rhs.len())
 	std::memcpy(sp, rhs.getbase(), lenth * sizeof(texttype));
 }
 
+ds::CharString::CharString(CharString && rhs):sp(rhs.sp),lenth(rhs.lenth)
+{
+    rhs.sp = nullptr;
+    rhs.lenth = 0;
+}
+
 ds::CharString::~CharString()
 {
-	delete[] sp;
+    if(sp)
+        delete[] sp;
 }
 
 const int ds::CharString::len() const
@@ -111,6 +118,19 @@ ds::CharString & ds::CharString::operator=(const CharString & rhs)
 	sp = new texttype[lenth];
 	memcpy(sp, rhs.getbase(), lenth * sizeof(texttype));
 	return (*this);
+}
+
+ds::CharString & ds::CharString::operator=(CharString && rhs)
+{
+    if (this == &rhs)
+        return *this;
+    if (sp)
+        delete[] sp;
+    sp = rhs.sp;
+    lenth = rhs.lenth;
+    rhs.sp = nullptr;
+    rhs.lenth = 0;
+    return *this;
 }
 
 bool ds::CharString::operator==(const CharString & rhs) const

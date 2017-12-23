@@ -9,7 +9,9 @@ namespace ds {
 		CharString(const texttype* s);
 		CharString(std::string& s);
 		CharString(const CharString& rhs);
+        CharString(CharString&& rhs);
 		CharString& operator = (const CharString &rhs);
+        CharString& operator = (CharString&& rhs);
 		~CharString();
 
 		inline const int len() const;
