@@ -18,9 +18,6 @@
     <ClCompile Include="webdownload.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="htmlparse.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -46,6 +43,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="filelist.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="retrieve.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,6 +78,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="filelist.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="retrieve.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

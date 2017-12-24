@@ -11,7 +11,8 @@ namespace ds {
     哈希元素为自定义的字符串类型
     */
     class hashtable {
-    public:
+    private:
+        //存储类型定义
 
         typedef ds::CharString elemtype;
 
@@ -28,31 +29,44 @@ namespace ds {
                     delete file;
             }
         };
+
         typedef node* storetype;
         typedef filelist* content;
+
     public:
 
+        //指定初始表长，默认为1024
         hashtable(int tn = 1024);
         ~hashtable();
+        //不允许复制或移动
         hashtable(const hashtable&) = delete;
         hashtable& operator= (const hashtable&) = delete;
         hashtable(hashtable&&) = delete;
         hashtable& operator= (hashtable&&) = delete;
 
+        //插入某个元素，返回其存储的内容
+        //如果哈希表存储因子过大，则调整空间rehash
         content insert(const elemtype& elem);
-        content search(const elemtype&);
+
+        //查找某个值，如果存在返回其文档链表指针
+        //如果不存在返回nullptr
+        content search(const elemtype& elem);
+
+        //返回目前哈希表元素个数
         inline int size()
         {
             return now_size;
         }
+
+        //用于计算哈希值
         unsigned int hash(const CharString&);
 
         void rehash(unsigned int new_max_size);
     private:
-        unsigned int max_size;
-        unsigned int now_size;
+        unsigned int max_size;//表长
+        unsigned int now_size;//元素个数
         storetype* heap;
 
-        std::hash<std::string> getkey;
+        std::hash<std::string> getkey;//用于实现哈希函数
     };
 }

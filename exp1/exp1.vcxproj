@@ -125,6 +125,7 @@
     <ClCompile Include="htmlparse.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="avl.h" />
+    <ClCompile Include="retrieve.cpp" />
     <ClCompile Include="webanalysis.cpp" />
     <ClCompile Include="webdownload.cpp" />
     <ClCompile Include="wordparse.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="webanalysis.h" />
     <ClInclude Include="webdownload.h" />
     <ClInclude Include="wordparse.h" />
+    <ClInclude Include="retrieve.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

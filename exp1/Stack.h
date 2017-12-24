@@ -31,7 +31,7 @@ namespace ds {
 		stacksize(rhs.stacksize),
 		maxstacksize(rhs.maxstacksize)
 	{
-		base = new[maxstacksize];
+		base = new datatype[maxstacksize];
 		for (int i = 0; i < stacksize; i++)
 			*(base + i) = *(rhs.base + i);
 		return;

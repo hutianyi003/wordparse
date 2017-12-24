@@ -20,5 +20,6 @@ int main() {
 	//wa.divideWords();
 	//wa.output("output\\result.csv");
 
+    ds::hashtable h(123);
 	return 0;
 }
