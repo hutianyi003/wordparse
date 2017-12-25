@@ -67,7 +67,7 @@ void ds::adjust(ds::filelist* toadjust, ds::filelist::node* p)
         h->next = h->next->next;
     }
     //重新将p插入到合适的位置
-    if (bigger(p, toadjust->head)) {
+    if (toadjust->head == nullptr || bigger(p, toadjust->head)) {
         ds::filelist::node* temp(toadjust->head);
         toadjust->head = p;
         p->next = temp;
